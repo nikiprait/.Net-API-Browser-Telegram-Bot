@@ -48,20 +48,8 @@ namespace Tg_NetAPIBrowser
                     default:
                         await bot.SendTextMessageAsync(msg.Chat.Id, "Hi, " + msg.From.FirstName + "!\nYou search: " + msg.Text);
 
-                        var screenshotJob = ScreenshotJobBuilder.Create("https://docs.microsoft.com/ru-ru/dotnet/api/" + msg.Text + "?view=netframework-4.7.2")
-                        .SetBrowserSize(1366, 768)
-                        .SetCaptureZone(CaptureZone.FullPage)
-                        .SetTrigger(new WindowLoadTrigger());
-                        
-                        System.IO.File.WriteAllBytes(@"C:\BOT\image.png", screenshotJob.Freeze());
+                        //Основная логика
 
-                        using (FileStream stream = System.IO.File.Open("C:\\BOT\\image.png", FileMode.Open))
-                        {
-                            InputOnlineFile iof = new InputOnlineFile(stream);
-                            await bot.SendPhotoAsync(msg.Chat.Id, iof, msg.Text);
-                        }
-
-                        System.IO.File.Delete(@"C:\BOT\image.png");
                         break;
                 }
             }

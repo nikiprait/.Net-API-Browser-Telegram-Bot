@@ -1,19 +1,25 @@
-﻿using Freezer.Core;
-using System;
+﻿using System;
 using System.IO;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
-using Telegram.Bot.Types.InputFiles;
+using Tg_NetAPIBrowser.Resources;
+using Tg_NetAPIBrowser.Resources.MSDN;
 
 namespace Tg_NetAPIBrowser
 {
     class Program
     {
+        static ParserWorker<string[]> parser;
+
         private static readonly TelegramBotClient bot = new TelegramBotClient("737319644:AAGAGZAxGtypy0kPMtdQO247xKOg6bYw6A0");
 
         static void Main(string[] args)
         {
+            parser = new ParserWorker<string[]>(new MSDNParser());
+
+            //parser.OnNewData += Parser_OnNewData;
+
             bot.OnMessage += Bot_OnMessage;
             bot.SetWebhookAsync("");
 
@@ -49,6 +55,8 @@ namespace Tg_NetAPIBrowser
                         await bot.SendTextMessageAsync(msg.Chat.Id, "Hi, " + msg.From.FirstName + "!\nYou search: " + msg.Text);
 
                         //Основная логика
+                        parser.Settings = new MSDNSettings();
+                        parser.Worker(msg.Text);
 
                         break;
                 }
@@ -57,6 +65,20 @@ namespace Tg_NetAPIBrowser
             {
                 await bot.SendTextMessageAsync(msg.Chat.Id, "Sory, " + msg.From.FirstName + ", but this is not text.");
             }
+
         }
-    }
+
+        public static async void Bot_Answer(object sender, Telegram.Bot.Args.MessageEventArgs e, string res)
+        {
+            Message message = e.Message;
+
+            await bot.SendTextMessageAsync(message.Chat.Id, res);
+        }
+
+        private static void Parser_OnNewData(object arg1, string[] arg2)
+        {
+            Bot_Answer(0, null, arg2[0]);
+        }
+
+        }
 }

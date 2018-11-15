@@ -18,7 +18,7 @@ namespace Tg_NetAPIBrowser
         {
             parser = new ParserWorker<string[]>(new MSDNParser());
 
-            //parser.OnNewData += Parser_OnNewData;
+            parser.OnNewData += Parser_OnNewData;
 
             bot.OnMessage += Bot_OnMessage;
             bot.SetWebhookAsync("");

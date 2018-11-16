@@ -1,8 +1,4 @@
 ﻿using System;
-<<<<<<< HEAD
-=======
-using System.IO;
->>>>>>> 7dbea807ea2851a27bc9330cb0c1fcb8765d209b
 using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
@@ -38,8 +34,6 @@ namespace Tg_NetAPIBrowser
         {
             Message msg = e.Message;
 
-
-
             if (msg == null) return;
 
             if (msg.Type == MessageType.Text)
@@ -61,11 +55,7 @@ namespace Tg_NetAPIBrowser
 
                         //Основная логика
                         parser.Settings = new MSDNSettings();
-<<<<<<< HEAD
                         parser.Worker(msg.Text, msg.Chat.Id.ToString());
-=======
-                        parser.Worker(msg.Text);
->>>>>>> 7dbea807ea2851a27bc9330cb0c1fcb8765d209b
 
                         break;
                 }
@@ -77,23 +67,16 @@ namespace Tg_NetAPIBrowser
 
         }
 
-<<<<<<< HEAD
         private static async void Parser_OnNewData(object arg1, string[] arg2, string arg3)
         {
-            await bot.SendTextMessageAsync(arg3, arg2[0]);
-=======
-        public static async void Bot_Answer(object sender, Telegram.Bot.Args.MessageEventArgs e, string res)
-        {
-            Message message = e.Message;
-
-            await bot.SendTextMessageAsync(message.Chat.Id, res);
+            try
+            {
+                await bot.SendTextMessageAsync(arg3, arg2[0]);
+            }
+            catch
+            {
+                await bot.SendTextMessageAsync(arg3, "Error, this is not look like namespace or class or method, try again.");
+            }
         }
-
-        private static void Parser_OnNewData(object arg1, string[] arg2)
-        {
-            Bot_Answer(0, null, arg2[0]);
->>>>>>> 7dbea807ea2851a27bc9330cb0c1fcb8765d209b
-        }
-
-        }
+    }
 }

@@ -39,9 +39,14 @@ namespace Tg_NetAPIBrowser.Resources
 
         #endregion
 
+<<<<<<< HEAD
         public event Action<object, T, string> OnNewData;
         public bool turner = false;
 
+=======
+        public event Action<object, T> OnNewData;
+        public bool turner = false;
+>>>>>>> 7dbea807ea2851a27bc9330cb0c1fcb8765d209b
         public ParserWorker(IParser<T> parser)
         {
             this.parser = parser;
@@ -51,14 +56,22 @@ namespace Tg_NetAPIBrowser.Resources
         {
             this.parserSettings = parserSettings;
         }
+<<<<<<< HEAD
         public async void Worker(string name, string ChatId)
+=======
+        public async void Worker(string name)
+>>>>>>> 7dbea807ea2851a27bc9330cb0c1fcb8765d209b
         {
             var source = await loader.GetSourceByPageName(name);
             var domParser = new HtmlParser();
             var document = await domParser.ParseAsync(source);
             var result = parser.Parse(document);
             
+<<<<<<< HEAD
             OnNewData?.Invoke(this, result, ChatId);
+=======
+            OnNewData?.Invoke(this, result);
+>>>>>>> 7dbea807ea2851a27bc9330cb0c1fcb8765d209b
             
         }
     }

@@ -45,13 +45,28 @@ namespace Tg_NetAPIBrowser
                         await bot.SendTextMessageAsync(msg.Chat.Id, "Hello, " + msg.From.FirstName + "!");
                         break;
                     case "/help":
-                        await bot.SendTextMessageAsync(msg.Chat.Id, "Вставить сюда информацию о том, как пользоваться ботом");
+                        await bot.SendTextMessageAsync(msg.Chat.Id, 
+                            "/start - запустить бота \n" +
+                            "/help - вывести эту справку \n" +
+                            "/donate - вывести ссылку на донат");
                         break;
                     case "/donate":
                         await bot.SendTextMessageAsync(msg.Chat.Id, "Вставить сюда ссылку на донат");
                         break;
                     default:
                         await bot.SendTextMessageAsync(msg.Chat.Id, "Hi, " + msg.From.FirstName + "!\nYou search: " + msg.Text);
+
+                        #region Console Output
+
+                        Console.WriteLine(
+                            msg.From.LanguageCode + " | " + 
+                            msg.Date + " : " + 
+                            msg.From.FirstName + " " + 
+                            msg.From.LastName + " (" + 
+                            msg.From.Username + ") search: " + 
+                            msg.Text);
+
+                        #endregion
 
                         //Основная логика
                         parser.Settings = new MSDNSettings();

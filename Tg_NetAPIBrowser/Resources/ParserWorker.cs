@@ -40,7 +40,6 @@ namespace Tg_NetAPIBrowser.Resources
         #endregion
 
         public event Action<object, T, string> OnNewData;
-        public bool turner = false;
         public ParserWorker(IParser<T> parser)
         {
             this.parser = parser;

@@ -1,7 +1,9 @@
 ﻿using System;
 using Telegram.Bot;
+using Telegram.Bot.Args;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
+using Telegram.Bot.Types.ReplyMarkups;
 using Tg_NetAPIBrowser.Resources;
 using Tg_NetAPIBrowser.Resources.MSDN;
 
@@ -12,6 +14,8 @@ namespace Tg_NetAPIBrowser
         static ParserWorker<string[]> parser;
 
         private static readonly TelegramBotClient bot = new TelegramBotClient("737319644:AAGAGZAxGtypy0kPMtdQO247xKOg6bYw6A0");
+
+        static string Search = "";
 
         static void Main(string[] args)
         {
@@ -30,7 +34,7 @@ namespace Tg_NetAPIBrowser
             bot.StopReceiving();
         }
 
-        public static async void Bot_OnMessage(object sender, Telegram.Bot.Args.MessageEventArgs e)
+        public static async void Bot_OnMessage(object sender, MessageEventArgs e)
         {
             Message msg = e.Message;
 
@@ -38,6 +42,20 @@ namespace Tg_NetAPIBrowser
 
             if (msg.Type == MessageType.Text)
             {
+                var language = new ReplyKeyboardMarkup
+                {
+                    Keyboard = new[] {
+                                                new[] // row 1
+                                                {
+                                                    new KeyboardButton("RU"),
+                                                    new KeyboardButton("ENG"),
+                                                    new KeyboardButton("PL"),
+                                                    new KeyboardButton("DE")
+                                                },
+                                            },
+                    ResizeKeyboard = true
+                };
+
                 //Тут добавляем команды
                 switch (msg.Text)
                 {
@@ -45,7 +63,7 @@ namespace Tg_NetAPIBrowser
                         await bot.SendTextMessageAsync(msg.Chat.Id, "Hello, " + msg.From.FirstName + "!");
                         break;
                     case "/help":
-                        await bot.SendTextMessageAsync(msg.Chat.Id, 
+                        await bot.SendTextMessageAsync(msg.Chat.Id,
                             "/start - запустить бота \n" +
                             "/help - вывести эту справку \n" +
                             "/donate - вывести ссылку на донат");
@@ -53,24 +71,51 @@ namespace Tg_NetAPIBrowser
                     case "/donate":
                         await bot.SendTextMessageAsync(msg.Chat.Id, "Вставить сюда ссылку на донат");
                         break;
+
+                    #region Language Settings
+
+                    case "RU":
+                        await bot.SendTextMessageAsync(msg.Chat.Id, "Ищу информацию на русском языке!");
+                        parser.Settings = new MSDNSettings
+                        { BaseUrl = "https://docs.microsoft.com/ru-ru/dotnet/api" };
+                        parser.Worker(Search, msg.Chat.Id.ToString());
+                        break;
+                    case "ENG":
+                        await bot.SendTextMessageAsync(msg.Chat.Id, "Serach information in english language!");
+                        parser.Settings = new MSDNSettings
+                        { BaseUrl = "https://docs.microsoft.com/en-us/dotnet/api" };
+                        parser.Worker(Search, msg.Chat.Id.ToString());
+                        break;
+                    case "PL":
+                        await bot.SendTextMessageAsync(msg.Chat.Id, "Szukam informacje w języku polskim!");
+                        parser.Settings = new MSDNSettings
+                        { BaseUrl = "https://docs.microsoft.com/pl-pl/dotnet/api" };
+                        parser.Worker(Search, msg.Chat.Id.ToString());
+                        break;
+                    case "DE":
+                        await bot.SendTextMessageAsync(msg.Chat.Id, "Ich suche Informationen auf Deutsch!");
+                        parser.Settings = new MSDNSettings
+                        { BaseUrl = "https://docs.microsoft.com/de-de/dotnet/api" };
+                        parser.Worker(Search, msg.Chat.Id.ToString());
+                        break;
+
+                    #endregion
+
                     default:
-                        await bot.SendTextMessageAsync(msg.Chat.Id, "Hi, " + msg.From.FirstName + "!\nYou search: " + msg.Text);
+                        await bot.SendTextMessageAsync(msg.Chat.Id, "Hi, " + msg.From.FirstName + "!\nYou search: " + msg.Text, ParseMode.Default, false, false, 0, language);
+                        Search = msg.Text;
 
                         #region Console Output
 
                         Console.WriteLine(
-                            msg.From.LanguageCode + " | " + 
-                            msg.Date + " : " + 
-                            msg.From.FirstName + " " + 
-                            msg.From.LastName + " (" + 
-                            msg.From.Username + ") search: " + 
+                            msg.From.LanguageCode + " | " +
+                            msg.Date + " : " +
+                            msg.From.FirstName + " " +
+                            msg.From.LastName + " (" +
+                            msg.From.Username + ") search: " +
                             msg.Text);
 
                         #endregion
-
-                        //Основная логика
-                        parser.Settings = new MSDNSettings();
-                        parser.Worker(msg.Text, msg.Chat.Id.ToString());
 
                         break;
                 }
@@ -79,7 +124,6 @@ namespace Tg_NetAPIBrowser
             {
                 await bot.SendTextMessageAsync(msg.Chat.Id, "Sory, " + msg.From.FirstName + ", but this is not text.");
             }
-
         }
 
         private static async void Parser_OnNewData(object arg1, string[] arg2, string arg3)

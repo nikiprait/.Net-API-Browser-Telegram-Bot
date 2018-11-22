@@ -4415,11 +4415,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Тёма\\Tg_NetAPIBrowser\\Tg_NetAPIBrowser.csproj",
+      "projectUniqueName": "C:\\Users\\Тёма\\Documents\\GitHub\\.Net-API-Browser-Telegram-Bot\\Tg_NetAPIBrowser.csproj",
       "projectName": "Tg_NetAPIBrowser",
-      "projectPath": "C:\\Users\\Тёма\\Tg_NetAPIBrowser\\Tg_NetAPIBrowser.csproj",
+      "projectPath": "C:\\Users\\Тёма\\Documents\\GitHub\\.Net-API-Browser-Telegram-Bot\\Tg_NetAPIBrowser.csproj",
       "packagesPath": "C:\\Users\\Тёма\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Тёма\\Tg_NetAPIBrowser\\obj\\",
+      "outputPath": "C:\\Users\\Тёма\\Documents\\GitHub\\.Net-API-Browser-Telegram-Bot\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

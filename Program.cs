@@ -55,21 +55,11 @@ namespace Tg_NetAPIBrowser
                                             },
                     ResizeKeyboard = true
                 };
-
-                //Тут добавляем команды
+                
                 switch (msg.Text)
                 {
                     case "/start":
                         await bot.SendTextMessageAsync(msg.Chat.Id, "Hello, " + msg.From.FirstName + "!");
-                        break;
-                    case "/help":
-                        await bot.SendTextMessageAsync(msg.Chat.Id,
-                            "/start - запустить бота \n" +
-                            "/help - вывести эту справку \n" +
-                            "/donate - вывести ссылку на донат");
-                        break;
-                    case "/donate":
-                        await bot.SendTextMessageAsync(msg.Chat.Id, "Вставить сюда ссылку на донат");
                         break;
 
                     #region Language Settings
@@ -81,7 +71,7 @@ namespace Tg_NetAPIBrowser
                         parser.Worker(Search, msg.Chat.Id.ToString());
                         break;
                     case "ENG":
-                        await bot.SendTextMessageAsync(msg.Chat.Id, "Serach information in english language!");
+                        await bot.SendTextMessageAsync(msg.Chat.Id, "Search information in english language!");
                         parser.Settings = new MSDNSettings
                         { BaseUrl = "https://docs.microsoft.com/en-us/dotnet/api" };
                         parser.Worker(Search, msg.Chat.Id.ToString());

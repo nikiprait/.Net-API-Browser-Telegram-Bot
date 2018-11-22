@@ -1,0 +1,9 @@
+C:\Users\Тёма\Tg_NetAPIBrowser\bin\Debug\netcoreapp2.2\Tg_NetAPIBrowser.dll.config
+C:\Users\Тёма\Tg_NetAPIBrowser\bin\Debug\netcoreapp2.2\Tg_NetAPIBrowser.deps.json
+C:\Users\Тёма\Tg_NetAPIBrowser\bin\Debug\netcoreapp2.2\Tg_NetAPIBrowser.runtimeconfig.json
+C:\Users\Тёма\Tg_NetAPIBrowser\bin\Debug\netcoreapp2.2\Tg_NetAPIBrowser.runtimeconfig.dev.json
+C:\Users\Тёма\Tg_NetAPIBrowser\bin\Debug\netcoreapp2.2\Tg_NetAPIBrowser.dll
+C:\Users\Тёма\Tg_NetAPIBrowser\obj\Debug\netcoreapp2.2\Tg_NetAPIBrowser.csprojAssemblyReference.cache
+C:\Users\Тёма\Tg_NetAPIBrowser\obj\Debug\netcoreapp2.2\Tg_NetAPIBrowser.csproj.CoreCompileInputs.cache
+C:\Users\Тёма\Tg_NetAPIBrowser\obj\Debug\netcoreapp2.2\Tg_NetAPIBrowser.AssemblyInfoInputs.cache
+C:\Users\Тёма\Tg_NetAPIBrowser\obj\Debug\netcoreapp2.2\Tg_NetAPIBrowser.AssemblyInfo.cs

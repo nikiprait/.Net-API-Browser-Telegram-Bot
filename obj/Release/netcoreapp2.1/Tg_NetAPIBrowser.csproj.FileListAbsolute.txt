@@ -9,3 +9,8 @@ C:\Users\Тёма\Documents\GitHub\.Net-API-Browser-Telegram-Bot\obj\Release\net
 C:\Users\Тёма\Documents\GitHub\.Net-API-Browser-Telegram-Bot\obj\Release\netcoreapp2.1\Tg_NetAPIBrowser.AssemblyInfo.cs
 C:\Users\Тёма\Documents\GitHub\.Net-API-Browser-Telegram-Bot\obj\Release\netcoreapp2.1\Tg_NetAPIBrowser.dll
 C:\Users\Тёма\Documents\GitHub\.Net-API-Browser-Telegram-Bot\obj\Release\netcoreapp2.1\Tg_NetAPIBrowser.pdb
+C:\Users\Тёма\Desktop\Tg_NetAPIBrowser.deps.json
+C:\Users\Тёма\Desktop\Tg_NetAPIBrowser.runtimeconfig.json
+C:\Users\Тёма\Desktop\Tg_NetAPIBrowser.runtimeconfig.dev.json
+C:\Users\Тёма\Desktop\Tg_NetAPIBrowser.dll
+C:\Users\Тёма\Desktop\Tg_NetAPIBrowser.pdb

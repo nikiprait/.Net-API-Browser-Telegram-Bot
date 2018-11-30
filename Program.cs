@@ -13,7 +13,7 @@ namespace Tg_NetAPIBrowser
     {
         static ParserWorker<string[]> parser;
 
-        private static readonly TelegramBotClient bot = new TelegramBotClient("737319644:AAGAGZAxGtypy0kPMtdQO247xKOg6bYw6A0");
+        private static readonly TelegramBotClient bot = new TelegramBotClient("786162377:AAEbvPL4xYQYccmib_qHuGAy6SIanffJDgA");
 
         static string Search = "";
 
@@ -45,7 +45,7 @@ namespace Tg_NetAPIBrowser
                 var language = new ReplyKeyboardMarkup
                 {
                     Keyboard = new[] {
-                                                new[] // row 1
+                                                new[]
                                                 {
                                                     new KeyboardButton("RU"),
                                                     new KeyboardButton("ENG"),
